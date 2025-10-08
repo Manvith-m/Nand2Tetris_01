@@ -1,0 +1,49 @@
+// #define _GNU_SOURCE
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include<string.h>
+// #include<ctype.h>
+
+
+// int main(void)
+// {
+//     FILE * fp;
+//     FILE *fp2;
+//     char * line = NULL;
+//     size_t len = 0;
+//     ssize_t read;
+
+//     fp = fopen("Fill.asm", "rb");
+//     if (fp == NULL)
+//         exit(EXIT_FAILURE);
+//     fp2 = fopen("Fill_s.s", "w");
+//     if (fp2 == NULL)
+//         exit(EXIT_FAILURE);
+
+//     while((read = getline(&line,&len,fp)) != -1)
+//     {
+//         int line_eof_idx;
+//         char *temp = line;
+//         char *trailing_ptr = temp;
+//         if(temp[0] == '/' || strlen(line) <= 1)   continue; //skip if empty line comment line
+//         while(*temp == ' ' || *temp == '\t') temp++; //remove leading whitespaces
+        
+//         trailing_ptr = strstr(temp,"\n");
+//         if(trailing_ptr != NULL)
+//             *trailing_ptr = '\0';
+//         char *line_comment_idx = strstr(line, "//");
+//         if(line_comment_idx != NULL)
+//             *line_comment_idx = '\0';
+//         // printf("%d--%s--\n",line_eof_idx,temp);
+//         fputs(temp,fp2);
+//         fputs("\n",fp2);
+//         // fprintf(fp,"\n");
+//         // printf("%ld %6s :: %2C - %2c :: %2ld", read , temp, temp[0], temp[strlen(temp)-1], strlen(temp));
+//     }
+
+//     fclose(fp);
+//     fclose(fp2);
+//     if (line)
+//         free(line);
+//     exit(EXIT_SUCCESS);
+// }

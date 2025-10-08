@@ -1,0 +1,39 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Or8Way.hdl
+/**
+ * 8-way Or gate: 
+ * out = in[0] Or in[1] Or ... Or in[7]
+ */
+CHIP Or8Way {
+    IN in[8];
+    OUT out;
+
+    PARTS:
+    Nand(a= in[0], b= in[0], out= in0Not);
+    Nand(a= in[1], b= in[1], out= in1Not);
+    Nand(a= in[2], b= in[2], out= in2Not); 
+    Nand(a= in[3], b= in[3], out= in3Not);
+    Nand(a= in[4], b= in[4], out= in4Not);
+    Nand(a= in[5], b= in[5], out= in5Not);
+    Nand(a= in[6], b= in[6], out= in6Not);
+    Nand(a= in[7], b= in[7], out= in7Not);
+
+    Nand(a= in0Not, b= in1Not, out= in0NotNandin1Not);
+    Nand(a= in0NotNandin1Not, b= in0NotNandin1Not, out= in0orin1);
+    Nand(a= in2Not, b= in3Not, out= in2NotNandin3Not);
+    Nand(a= in2NotNandin3Not, b= in2NotNandin3Not, out= in2orin3);
+    Nand(a= in4Not, b= in5Not, out= in4NotNandin5Not);
+    Nand(a= in4NotNandin5Not, b= in4NotNandin5Not, out= in4orin5); 
+    Nand(a= in6Not, b= in7Not, out= in6NotNandin7Not);
+    Nand(a= in6NotNandin7Not, b= in6NotNandin7Not, out= in6orin7);
+
+    Nand(a= in0orin1, b= in2orin3, out= in0orin1nandin2orin3);
+    Nand(a= in0orin1nandin2orin3, b= in0orin1nandin2orin3, out= in0orin1orin2orin3);
+    Nand(a= in4orin5, b= in6orin7, out= in4orin5nandin6orin7);
+    Nand(a= in4orin5nandin6orin7, b= in4orin5nandin6orin7, out= in4orin5orin6orin7);
+
+    Nand(a= in0orin1orin2orin3, b= in4orin5orin6orin7, out= out);
+    
+} 
